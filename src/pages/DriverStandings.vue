@@ -1,0 +1,326 @@
+<template>
+  <div>
+    <div class="drivercontainer">
+      <div class="driver">
+        <div class="second">
+          <q-card class="fill" flat square>
+            <q-img :src="getDriverImage(1)">
+            </q-img>
+            <q-card-section>
+              <div class="row">
+                <div class="col text-center">
+                  <q-chip class="second-badge">
+                    <q-avatar>
+                      <img src="https://img.icons8.com/color/96/000000/silver-medal--v2.png" width="24" height="24">
+                    </q-avatar>
+                    <div class="text-bold">{{ drivers[1].position }}nd</div>
+                  </q-chip>
+                </div>
+              </div>
+              <div class="text-subtitle2">{{ drivers[1].fullname }}</div>
+              <hr>
+              <div class="text-center">
+                <div>{{ drivers[1].team }}</div>
+                <div>{{ drivers[1].wins }} Wins</div>
+                <div>{{ drivers[1].points }} Points</div>
+              </div>
+            </q-card-section>
+          </q-card>
+        </div>
+
+        <div class="first">
+          <q-card class="fill " flat square>
+            <q-img :src="getDriverImage(0)">
+            </q-img>
+            <q-card-section>
+              <div class="row">
+                <div class="col text-center">
+                  <q-chip class="first-badge">
+                    <q-avatar>
+                      <img src="https://img.icons8.com/color/96/000000/gold-medal--v2.png" width="24" height="24">
+                    </q-avatar>
+                    <div class="text-bold">{{ drivers[0].position }}st</div>
+                  </q-chip>
+                </div>
+              </div>
+              <div class="text-subtitle2">{{ drivers[0].fullname }}</div>
+              <hr>
+              <div class="text-center">
+                <div>{{ drivers[0].team }}</div>
+                <div>{{ drivers[0].wins }} Wins</div>
+                <div>{{ drivers[0].points }} Points</div>
+              </div>
+            </q-card-section>
+          </q-card>
+        </div>
+
+        <div class="third">
+          <q-card class="fill" flat square>
+            <q-img :src="getDriverImage(2)">
+            </q-img>
+            <q-card-section>
+              <div class="row">
+                <div class="col text-center">
+                  <q-chip class="third-badge">
+                    <q-avatar>
+                      <img src="https://img.icons8.com/color/96/000000/bronze-medal--v2.png" width="24" height="24">
+                    </q-avatar>
+                    <div class="text-bold">{{ drivers[2].position }}rd</div>
+                  </q-chip>
+                </div>
+              </div>
+              <div class="text-subtitle2">{{ drivers[2].fullname }}</div>
+              <hr>
+              <div class="text-center">
+                <div>{{ drivers[2].team }}</div>
+                <div>{{ drivers[2].wins }} Wins</div>
+                <div>{{ drivers[2].points }} Points</div>
+              </div>
+            </q-card-section>
+          </q-card>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="header-container">
+      <div class="header-position dark">
+        Pos
+      </div>
+      <div class="header">
+        Driver
+      </div>
+      <div class="header">
+        Team
+      </div>
+      <div class="header">
+        Wins
+      </div>
+      <div class="header">
+        Points
+      </div>
+    </div>
+    <hr>
+  <!-- <div v-for="driver in drivers" :key="driver.position" class="flex-container">
+    <div class="row">
+      <div class="col-xs-2">
+        <q-item-label>{{driver.position}}</q-item-label>
+      </div>
+      <div class="col-xs-2">
+         <q-avatar>
+          <img :src="getFlag(driver.nationality)" width="48" height="48">
+        </q-avatar>
+      </div>
+      <div class="col-xs-2">
+        <q-item-section>
+          <q-item-label class="lt-sm text-center">{{driver.code}}</q-item-label>
+          <q-item-label class="text-center">{{driver.name}}</q-item-label>
+        </q-item-section>
+      </div>
+      <div class="col-xs-2">
+        {{driver.team}}
+      </div>
+      <div class="col-xs-2">
+        <q-item-label>{{driver.wins}}</q-item-label>
+      </div>
+      <div class="col-xs-2">
+        <q-item-label >{{driver.points}}</q-item-label>
+      </div>
+
+    </div>
+  </div> -->
+    <div v-for="driver in drivers.slice(3)" :key="driver" class="flex-container">
+      <div class="position">
+          <q-item-label>{{driver.position}}</q-item-label>
+      </div>
+      <div class="item">
+        <q-item-section>
+          <q-item-label class="text-center">{{driver.code}}</q-item-label>
+        </q-item-section>
+      </div>
+      <div class="item">
+        {{driver.team}}
+      </div>
+      <div class="item">
+        <q-item-label>{{driver.wins}}</q-item-label>
+      </div>
+      <div class="item">
+        <q-item-label >{{driver.points}}</q-item-label>
+      </div>
+    </div>
+
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+
+export default {
+  name: 'drivers',
+  data () {
+    return {
+      isLoading: true,
+      flags: {
+        Finnish: "fi",
+        German: "de",
+        British: "gb",
+        Thai: "th",
+        Spanish: "es",
+        Australian: "au",
+        Monegasque: "mc",
+        French: "fr",
+        Mexican: "mx",
+        Canadian: "ca",
+        Russian: "ru",
+        Italian: "it",
+        Danish: "dk",
+        Polish: "pl",
+        Dutch: "nl"
+      },
+      drivers: [],
+    }
+  },
+  created() {
+    this.getData();
+  },
+  methods: {
+    getDriverImage(index) {
+      return `https://www.formula1.com/content/fom-website/en/drivers/${this.drivers[index].firstname}-${this.drivers[index].familyname}/_jcr_content/image16x9.img.1536.high.jpg`
+    },
+    getData(){
+      this.drivers = [];
+      axios.get('https://ergast.com/api/f1/current/driverStandings.json')
+      .then(response => {
+        console.log(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings)
+        let res = response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+        res.forEach((driver) => {
+          let driverStat = {
+            firstname: driver.Driver.givenName.toLowerCase(),
+            familyname: driver.Driver.familyName.toLowerCase(),
+            fullname: driver.Driver.givenName+" "+driver.Driver.familyName,
+            position: driver.positionText,
+            code: driver.Driver.code,
+            team: driver.Constructors[0].name,
+            points: driver.points,
+            wins: driver.wins,
+          }
+          this.drivers.push(driverStat);
+          this.isLoading = false;
+        });
+
+      })
+      .catch(e => {
+        console.log(e);
+      })
+    }
+  },
+}
+</script>
+
+<style scoped>
+hr{
+    border:0;
+    margin:0;
+    width:100%;
+    height:2px;
+    background:red;
+}
+
+.round{
+  border-radius: 10px 10px;
+  background: #73AD21;
+}
+.drivercontainer{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: black;
+}
+.driver{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.first{
+  height: 100%;
+}
+.second{
+  padding-top: 5%;
+  height: 100%;
+}
+.third{
+  padding-top: 5%;
+  height: 100%;
+}
+
+.fill{
+  height:100%;
+  background-color: rgb(44, 44, 44);
+  color: white;
+  white-space: nowrap;
+}
+.first-badge{
+  background: gold;
+}
+.second-badge{
+  background: silver;
+}
+.third-badge{
+  background: #cd7f32;
+}
+
+
+/*  */
+.flex-container{
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(44, 44, 44);
+}
+.item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color:white;
+  font-weight: 500;
+  height: 50px;
+}
+
+.header-container{
+  display: flex;
+  flex-direction: row;
+  background-color: black;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.header-position{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+}
+
+.position{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  color:white;
+  background-color: #ffa200;
+}
+.centered {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+</style>
