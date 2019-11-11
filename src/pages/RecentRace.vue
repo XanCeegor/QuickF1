@@ -1,11 +1,10 @@
 <template>
-<q-page v-show="!isLoading">
-
+<q-page v-show="!isLoading" style="background-color: black;">
   <div class="row">
     <div class="col-12 text-center">
       <div class="col-6">
         <!-- <q-img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/1280px-Flag_of_the_United_States.svg.png"> -->
-        <q-img src="https://flagpedia.net/data/flags/w580/ae.png">
+        <q-img :src="getCountryFlag()">
           <div class="absolute-full text-subtitle2 flex flex-center">
             <h4 style="margin:0">{{this.raceName}}
               <h5 style="margin:0">{{this.raceDate}}</h5>
@@ -15,9 +14,8 @@
       </div>
     </div>
   </div>
-  <br>
   <div class="header-container">
-    <div class="header-position text-black">
+    <div class="header-position text-white">
       Pos
     </div>
     <div class="header">
@@ -36,14 +34,14 @@
       Time
     </div>
   </div>
-  <hr>
-  <div v-for="driver in drivers" :key="driver.position" class="flex-container">
+  <hr class="recentraceline">
+  <div v-for="(driver, index) in drivers" :key="index" class="flex-container">
     <div class="position" :style="positionStyle(driver.position)">
         <q-item-label>{{driver.position}}</q-item-label>
     </div>
     <div class="item">
       <q-avatar>
-        <img :src="getFlag(driver.nationality)" width="48" height="48">
+        <img :src="getDriverFlag(driver.nationality)" width="48" height="48">
       </q-avatar>
     </div>
     <div class="item">
@@ -75,7 +73,7 @@ export default {
   data () {
     return {
       isLoading: true,
-      flags: {
+      driverFlags: {
         Finnish: "fi",
         German: "de",
         British: "gb",
@@ -92,9 +90,33 @@ export default {
         Polish: "pl",
         Dutch: "nl"
       },
+      countryFlags: {
+        Australia: "au",
+        Bahrain: "bh",
+        China: "cn",
+        Azerbaijan: "az",
+        Spain: "es",
+        Monaco: "mc",
+        Canada: "ca",
+        France: "fr",
+        Austria: "at",
+        UK: "gb",
+        Germany: "de",
+        Hungary: "hu",
+        Italy: "it",
+        Belgium: "bz",
+        Singapore: "sg",
+        Russia: "ru",
+        Japan: "jp",
+        Mexico: "mx",
+        USA: "us",
+        Brazil: "br",
+        UAE: "ae"
+      },
       drivers: [],
       raceName: "",
-      raceDate: ""
+      raceDate: "",
+      raceCountry: "",
     }
   },
   created() {
@@ -106,10 +128,14 @@ export default {
         return "background-color: red"
       }
     },
-    getFlag(nationality){
-      let flag = this.flags[nationality];
+    getDriverFlag(nationality){
+      let flag = this.driverFlags[nationality];
       let url = "https://www.countryflags.io/"+flag+"/flat/64.png";
       return url;
+    },
+    getCountryFlag(){
+      let flag = this.countryFlags[this.raceCountry];
+      return `http://www.geonames.org/flags/x/${flag}.gif`;
     },
     getData(){
       this.drivers = [];
@@ -118,6 +144,7 @@ export default {
         let res = response.data.MRData.RaceTable.Races[0].Results;
         this.raceName = response.data.MRData.RaceTable.Races[0].raceName;
         this.raceDate = response.data.MRData.RaceTable.Races[0].date;
+        this.raceCountry = response.data.MRData.RaceTable.Races[0].Circuit.Location.country;
         res.forEach((driver) => {
           if(driver.Time == null){
             var time = driver.status;
@@ -149,7 +176,14 @@ export default {
 }
 </script>
 
-<style >
+<style>
+.recentraceline{
+    border:0;
+    margin:0;
+    width:100%;
+    height:2px;
+    background:red;
+}
 .flex-container{
   display: flex;
   flex-direction: row;
@@ -163,16 +197,18 @@ export default {
   color:white;
   font-weight: 500;
 }
-
 .header-container{
   display: flex;
   flex-direction: row;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 .header{
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  color: white;
 }
 .header-position{
   display: flex;
@@ -189,12 +225,6 @@ export default {
   color:white;
   background-color: #ffa200;
 }
-/* .centered {
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-} */
 [v-cloak] {
   display: none;
 }

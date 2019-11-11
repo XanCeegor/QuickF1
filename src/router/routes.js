@@ -1,17 +1,33 @@
 import MainLayout from 'layouts/MainLayout.vue';
 import RecentRace from 'pages/RecentRace'
 import DriverStandings from 'pages/DriverStandings'
+import ConstructorsStandings from 'pages/ConstructorStandings'
+import Schedule from 'pages/Schedule'
 
 const routes = [
   {
     path: '/drivers',
     name: 'drivers',
-    component: DriverStandings
+    component: DriverStandings,
+    meta: { title: 'Driver Standings' }
+  },
+  {
+    path: '/constructors',
+    name: 'constructors',
+    component: ConstructorsStandings,
+    meta: { title: 'Constructor Standings' }
   },
   {
     path: '/recentrace',
     name: 'recentrace',
-    component: RecentRace
+    component: RecentRace,
+    meta: { title: 'Latest Race Result' }
+  },
+  {
+    path: '/schedule',
+    name: 'schedule',
+    component: Schedule,
+    meta: { title: 'Latest Race Result' }
   },
   // {
   //   path: '/drivers',

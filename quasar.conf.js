@@ -141,8 +141,10 @@ module.exports = function (ctx) {
 
     // https://quasar.dev/quasar-cli/developing-cordova-apps/configuring-cordova
     cordova: {
-      // id: 'org.agouws.quickf1.app',
-      // noIosLegacyBuildFlag: true, // uncomment only if you know what you are doing
+      id: 'org.xanceegor.quickf1.app',
+      noIosLegacyBuildFlag: true, // uncomment only if you know what you are doing
+      display: 'standalone',
+      orientation: 'portrait',
     },
 
     // https://quasar.dev/quasar-cli/developing-electron-apps/configuring-electron

@@ -11,7 +11,7 @@
           aria-label="Menu"
         />
         <q-toolbar-title>
-          QuickF1
+          {{ $route.meta.title }}
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
@@ -69,7 +69,7 @@
         enter-active-class="animated fadeIn"
         leave-active-class="animated fadeOut"
         appear
-        :duration="1000"
+        :duration="2000"
       >
         <router-view/>
       </transition>

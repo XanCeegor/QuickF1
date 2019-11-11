@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <q-page v-show="!isLoading">
     <div class="drivercontainer">
       <div class="driver">
         <div class="second">
@@ -18,7 +18,7 @@
                 </div>
               </div>
               <div class="text-subtitle2">{{ drivers[1].fullname }}</div>
-              <hr>
+              <hr class="line">
               <div class="text-center">
                 <div>{{ drivers[1].team }}</div>
                 <div>{{ drivers[1].wins }} Wins</div>
@@ -44,7 +44,7 @@
                 </div>
               </div>
               <div class="text-subtitle2">{{ drivers[0].fullname }}</div>
-              <hr>
+              <hr class="line">
               <div class="text-center">
                 <div>{{ drivers[0].team }}</div>
                 <div>{{ drivers[0].wins }} Wins</div>
@@ -70,7 +70,7 @@
                 </div>
               </div>
               <div class="text-subtitle2">{{ drivers[2].fullname }}</div>
-              <hr>
+              <hr class="line">
               <div class="text-center">
                 <div>{{ drivers[2].team }}</div>
                 <div>{{ drivers[2].wins }} Wins</div>
@@ -100,42 +100,16 @@
         Points
       </div>
     </div>
-    <hr>
-  <!-- <div v-for="driver in drivers" :key="driver.position" class="flex-container">
-    <div class="row">
-      <div class="col-xs-2">
-        <q-item-label>{{driver.position}}</q-item-label>
-      </div>
-      <div class="col-xs-2">
-         <q-avatar>
-          <img :src="getFlag(driver.nationality)" width="48" height="48">
-        </q-avatar>
-      </div>
-      <div class="col-xs-2">
-        <q-item-section>
-          <q-item-label class="lt-sm text-center">{{driver.code}}</q-item-label>
-          <q-item-label class="text-center">{{driver.name}}</q-item-label>
-        </q-item-section>
-      </div>
-      <div class="col-xs-2">
-        {{driver.team}}
-      </div>
-      <div class="col-xs-2">
-        <q-item-label>{{driver.wins}}</q-item-label>
-      </div>
-      <div class="col-xs-2">
-        <q-item-label >{{driver.points}}</q-item-label>
-      </div>
-
-    </div>
-  </div> -->
+    <hr class="line">
+  
     <div v-for="driver in drivers.slice(3)" :key="driver" class="flex-container">
       <div class="position">
           <q-item-label>{{driver.position}}</q-item-label>
       </div>
       <div class="item">
         <q-item-section>
-          <q-item-label class="text-center">{{driver.code}}</q-item-label>
+          <q-item-label class="lt-sm text-center">{{driver.code}}</q-item-label>
+        <q-item-label class="gt-xs text-center">{{driver.fullname}}</q-item-label>
         </q-item-section>
       </div>
       <div class="item">
@@ -148,8 +122,7 @@
         <q-item-label >{{driver.points}}</q-item-label>
       </div>
     </div>
-
-  </div>
+  </q-page>
 </template>
 
 <script>
@@ -160,23 +133,6 @@ export default {
   data () {
     return {
       isLoading: true,
-      flags: {
-        Finnish: "fi",
-        German: "de",
-        British: "gb",
-        Thai: "th",
-        Spanish: "es",
-        Australian: "au",
-        Monegasque: "mc",
-        French: "fr",
-        Mexican: "mx",
-        Canadian: "ca",
-        Russian: "ru",
-        Italian: "it",
-        Danish: "dk",
-        Polish: "pl",
-        Dutch: "nl"
-      },
       drivers: [],
     }
   },
@@ -191,7 +147,6 @@ export default {
       this.drivers = [];
       axios.get('https://ergast.com/api/f1/current/driverStandings.json')
       .then(response => {
-        console.log(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings)
         let res = response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
         res.forEach((driver) => {
           let driverStat = {
@@ -218,7 +173,7 @@ export default {
 </script>
 
 <style scoped>
-hr{
+.line{
     border:0;
     margin:0;
     width:100%;
@@ -226,10 +181,6 @@ hr{
     background:red;
 }
 
-.round{
-  border-radius: 10px 10px;
-  background: #73AD21;
-}
 .drivercontainer{
   display: flex;
   flex-direction: row;
@@ -245,14 +196,17 @@ hr{
 
 .first{
   height: 100%;
+  width: 100%;
 }
 .second{
   padding-top: 5%;
   height: 100%;
+  width: 100%;
 }
 .third{
   padding-top: 5%;
   height: 100%;
+  width: 100%;
 }
 
 .fill{
@@ -271,8 +225,6 @@ hr{
   background: #cd7f32;
 }
 
-
-/*  */
 .flex-container{
   display: flex;
   flex-direction: row;
@@ -281,7 +233,6 @@ hr{
 .item{
   display: flex;
   justify-content: center;
-  align-items: center;
   width: 100%;
   color:white;
   font-weight: 500;
@@ -322,5 +273,8 @@ hr{
   bottom: 100%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+[v-cloak] {
+  display: none;
 }
 </style>

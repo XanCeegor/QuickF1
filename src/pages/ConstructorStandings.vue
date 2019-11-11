@@ -29,7 +29,7 @@
         </div>
 
         <div class="first">
-          <q-card class="fill " flat square>
+          <q-card class="fill" flat square>
             <q-img :src="getTeamImage(0)">
             </q-img>
             <q-card-section>
