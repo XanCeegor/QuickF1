@@ -27,7 +27,7 @@ const routes = [
     path: '/schedule',
     name: 'schedule',
     component: Schedule,
-    meta: { title: 'Latest Race Result' }
+    meta: { title: 'Race Schedule' }
   },
   // {
   //   path: '/drivers',

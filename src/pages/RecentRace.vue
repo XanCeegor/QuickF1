@@ -1,9 +1,8 @@
 <template>
-<q-page v-show="!isLoading" style="background-color: black;">
+<q-page v-show="!isLoading" class="RecentRace">
   <div class="row">
     <div class="col-12 text-center">
       <div class="col-6">
-        <!-- <q-img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/1280px-Flag_of_the_United_States.svg.png"> -->
         <q-img :src="getCountryFlag()">
           <div class="absolute-full text-subtitle2 flex flex-center">
             <h4 style="margin:0">{{this.raceName}}
@@ -177,6 +176,9 @@ export default {
 </script>
 
 <style>
+.RecentRace{
+  background-color: black;
+}
 .recentraceline{
     border:0;
     margin:0;

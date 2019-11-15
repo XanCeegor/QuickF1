@@ -43,7 +43,13 @@ module.exports = function (ctx) {
       all: 'auto',
 
       components: [
-        'QBanner'
+        'QBanner',
+        'QTabs',
+        'QTab',
+        'QRouteTab',
+        'QTabPanels',
+        'QTabPanel',
+        'QCard'
       ],
       directives: [],
 
@@ -89,7 +95,8 @@ module.exports = function (ctx) {
     // https://quasar.dev/options/animations
     animations: [
       'fadeOut',
-      'fadeIn'
+      'fadeIn',
+      
     ],
 
     // https://quasar.dev/quasar-cli/developing-ssr/configuring-ssr

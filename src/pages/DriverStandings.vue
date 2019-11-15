@@ -2,14 +2,14 @@
   <q-page v-show="!isLoading">
     <div class="drivercontainer">
       <div class="driver">
-        <div class="second">
+        <div class="second-standing">
           <q-card class="fill" flat square>
             <q-img :src="getDriverImage(1)">
             </q-img>
             <q-card-section>
               <div class="row">
                 <div class="col text-center">
-                  <q-chip class="second-badge">
+                  <q-chip class="second-standing-badge">
                     <q-avatar>
                       <img src="https://img.icons8.com/color/96/000000/silver-medal--v2.png" width="24" height="24">
                     </q-avatar>
@@ -17,7 +17,7 @@
                   </q-chip>
                 </div>
               </div>
-              <div class="text-subtitle2">{{ drivers[1].fullname }}</div>
+              <div class="text-subtitle2 text-center">{{ drivers[1].fullname }}</div>
               <hr class="line">
               <div class="text-center">
                 <div>{{ drivers[1].team }}</div>
@@ -28,14 +28,14 @@
           </q-card>
         </div>
 
-        <div class="first">
-          <q-card class="fill " flat square>
+        <div class="first-standing">
+          <q-card class="fill" flat square>
             <q-img :src="getDriverImage(0)">
             </q-img>
             <q-card-section>
               <div class="row">
                 <div class="col text-center">
-                  <q-chip class="first-badge">
+                  <q-chip class="first-standing-badge">
                     <q-avatar>
                       <img src="https://img.icons8.com/color/96/000000/gold-medal--v2.png" width="24" height="24">
                     </q-avatar>
@@ -43,7 +43,7 @@
                   </q-chip>
                 </div>
               </div>
-              <div class="text-subtitle2">{{ drivers[0].fullname }}</div>
+              <div class="text-subtitle2 text-center">{{ drivers[0].fullname }}</div>
               <hr class="line">
               <div class="text-center">
                 <div>{{ drivers[0].team }}</div>
@@ -54,14 +54,14 @@
           </q-card>
         </div>
 
-        <div class="third">
+        <div class="third-standing">
           <q-card class="fill" flat square>
             <q-img :src="getDriverImage(2)">
             </q-img>
             <q-card-section>
               <div class="row">
                 <div class="col text-center">
-                  <q-chip class="third-badge">
+                  <q-chip class="third-standing-badge">
                     <q-avatar>
                       <img src="https://img.icons8.com/color/96/000000/bronze-medal--v2.png" width="24" height="24">
                     </q-avatar>
@@ -69,7 +69,7 @@
                   </q-chip>
                 </div>
               </div>
-              <div class="text-subtitle2">{{ drivers[2].fullname }}</div>
+              <div class="text-subtitle2 text-center">{{ drivers[2].fullname }}</div>
               <hr class="line">
               <div class="text-center">
                 <div>{{ drivers[2].team }}</div>
@@ -172,7 +172,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style >
 .line{
     border:0;
     margin:0;
@@ -190,23 +190,23 @@ export default {
 .driver{
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
 }
 
-.first{
+.first-standing{
   height: 100%;
   width: 100%;
 }
-.second{
+.second-standing{
   padding-top: 5%;
-  height: 100%;
   width: 100%;
+  height: 100%;
 }
-.third{
+.third-standing{
   padding-top: 5%;
-  height: 100%;
   width: 100%;
+  height: 100%;
 }
 
 .fill{
@@ -215,13 +215,13 @@ export default {
   color: white;
   white-space: nowrap;
 }
-.first-badge{
+.first-standing-badge{
   background: gold;
 }
-.second-badge{
+.second-standing-badge{
   background: silver;
 }
-.third-badge{
+.third-standing-badge{
   background: #cd7f32;
 }
 

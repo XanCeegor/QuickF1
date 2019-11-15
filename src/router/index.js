@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
 import routes from './routes'
+import vueSmoothScroll from 'vue2-smooth-scroll'
 
+Vue.use(vueSmoothScroll)
 Vue.use(VueRouter)
+Vue.use(require('vue-moment'));
 
 /*
  * If not building with SSR mode, you can

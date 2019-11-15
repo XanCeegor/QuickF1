@@ -3,14 +3,14 @@
   <div class="constructor">
     <div class="teamcontainer">
       <div class="team">
-        <div class="second">
+        <div class="second-constructor">
           <q-card class="fill" flat square>
             <q-img :src="getTeamImage(1)">
             </q-img>
             <q-card-section>
               <div class="row">
                 <div class="col text-center">
-                  <q-chip class="second-badge">
+                  <q-chip class="second-constructor-badge">
                     <q-avatar>
                       <img src="https://img.icons8.com/color/96/000000/silver-medal--v2.png" width="24" height="24">
                     </q-avatar>
@@ -28,14 +28,14 @@
           </q-card>
         </div>
 
-        <div class="first">
+        <div class="first-constructor">
           <q-card class="fill" flat square>
             <q-img :src="getTeamImage(0)">
             </q-img>
             <q-card-section>
               <div class="row">
                 <div class="col text-center">
-                  <q-chip class="first-badge">
+                  <q-chip class="first-constructor-badge">
                     <q-avatar>
                       <img src="https://img.icons8.com/color/96/000000/gold-medal--v2.png" width="24" height="24">
                     </q-avatar>
@@ -53,14 +53,14 @@
           </q-card>
         </div>
 
-        <div class="third">
+        <div class="third-constructor">
           <q-card class="fill" flat square>
             <q-img :src="getTeamImage(2)">
             </q-img>
             <q-card-section>
               <div class="row">
                 <div class="col text-center">
-                  <q-chip class="third-badge">
+                  <q-chip class="third-constructor-badge">
                     <q-avatar>
                       <img src="https://img.icons8.com/color/96/000000/bronze-medal--v2.png" width="24" height="24">
                     </q-avatar>
@@ -184,16 +184,16 @@ hr{
     justify-content: center;
     width: 100%;
 }
-.first{
+.first-constructor{
     height: 100%;
     width: 100%;
 }
-.second{
+.second-constructor{
     padding-top: 5%;
     height: 100%;
     width: 100%;
 }
-.third{
+.third-constructor{
     padding-top: 5%;
     height: 100%;
     width: 100%;
@@ -205,13 +205,13 @@ hr{
   color: white;
   white-space: nowrap;
 }
-.first-badge{
+.first-constructor-badge{
   background: gold;
 }
-.second-badge{
+.second-constructor-badge{
   background: silver;
 }
-.third-badge{
+.third-constructor-badge{
   background: #cd7f32;
 }
 
