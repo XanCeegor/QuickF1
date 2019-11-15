@@ -79,7 +79,7 @@
                                 </q-card>
                             </div>
                         </div> -->
-                        <div class="text-center seemore" >
+                        <div class="text-center see-more-btn" >
                             <h5 class="h5-nomargin">See more</h5>
                         </div>
                     </div>
@@ -280,6 +280,7 @@ export default {
             var stickyHeight2 = sticky2.outerHeight();
             var scrollHeight = $(window).scrollTop();
 
+            //make upcoming races header sticky
             if(topOffset1 - 50 <= scrollHeight && scrollHeight < topOffset2 - stickyHeight1){
                 sticky1.css({
                     position: "fixed",
@@ -296,6 +297,7 @@ export default {
                     "background-color": "black"
                 });
             }
+            //make upcoming races and past races headers sticky
             else if(scrollHeight >= topOffset2- - stickyHeight1 && scrollHeight < topOffset2){
                 sticky1.css({
                     position: "fixed",
@@ -307,8 +309,10 @@ export default {
                     top: 50,
                     opacity: 0.8
                 });
+                
             }
-            else if(scrollHeight >=  topOffset2){
+            //make upcoming races static and past races sticky
+            else if(scrollHeight + 50 >= topOffset2){
                 sticky1.css({
                     position: "static",
                     opacity: 1
@@ -322,6 +326,7 @@ export default {
                     "padding-top": "50px"
                 });
             }
+            //make all headers static
             else{
                 sticky1.css({
                     position: "static",
@@ -329,12 +334,9 @@ export default {
                     opacity: 1
                 });
                 sticky2.css({
-                    position: "fixed",
+                    position: "static",
                     top: 50,
                     opacity: 0.8
-                });
-                $('body').css({
-                    "padding-top": "50px"
                 });
             }
             if(scrollHeight < 10){
@@ -452,7 +454,7 @@ html {
     z-index:500;
 }
 
-.seemore{
+.see-more-btn{
     margin-bottom: 5%; 
     background-color: gray;
     border-style: solid;

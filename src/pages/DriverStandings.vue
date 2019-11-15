@@ -11,7 +11,7 @@
                 <div class="col text-center">
                   <q-chip class="second-standing-badge">
                     <q-avatar>
-                      <img src="https://img.icons8.com/color/96/000000/silver-medal--v2.png" width="24" height="24">
+                      <img src="~assets/medals/silver.png" width="24" height="24">
                     </q-avatar>
                     <div class="text-bold">{{ drivers[1].position }}nd</div>
                   </q-chip>
@@ -37,7 +37,7 @@
                 <div class="col text-center">
                   <q-chip class="first-standing-badge">
                     <q-avatar>
-                      <img src="https://img.icons8.com/color/96/000000/gold-medal--v2.png" width="24" height="24">
+                      <img src="~assets/medals/gold.png" width="24" height="24">
                     </q-avatar>
                     <div class="text-bold">{{ drivers[0].position }}st</div>
                   </q-chip>
@@ -63,7 +63,7 @@
                 <div class="col text-center">
                   <q-chip class="third-standing-badge">
                     <q-avatar>
-                      <img src="https://img.icons8.com/color/96/000000/bronze-medal--v2.png" width="24" height="24">
+                      <img src="~assets/medals/bronze.png" width="24" height="24">
                     </q-avatar>
                     <div class="text-bold">{{ drivers[2].position }}rd</div>
                   </q-chip>

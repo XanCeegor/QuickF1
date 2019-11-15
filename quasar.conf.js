@@ -49,7 +49,8 @@ module.exports = function (ctx) {
         'QRouteTab',
         'QTabPanels',
         'QTabPanel',
-        'QCard'
+        'QCard',
+        'QSeparator'
       ],
       directives: [],
 
@@ -73,7 +74,7 @@ module.exports = function (ctx) {
     build: {
       scopeHoisting: true,
       vueRouterMode: 'history',
-      // showProgress: false,
+      // showProgress: true,
       // gzip: true,
       // analyze: true,
       // preloadChunks: false,

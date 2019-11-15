@@ -30,7 +30,7 @@
         <q-list padding>
           <q-item clickable v-ripple tag="a" to="/recentrace" @click.prevent="startProgress">
             <q-item-section avatar>
-              <img src="https://img.icons8.com/ios/96/000000/stopwatch.png" width="24" height="24">
+              <img src="~assets/logos/recent-race.png" width="24" height="24">
             </q-item-section>
             <q-item-section>
               <q-item-label>Latest Race Results</q-item-label>
@@ -38,7 +38,7 @@
           </q-item>
           <q-item clickable v-ripple tag="a" to="/drivers" @click.prevent="startProgress">
             <q-item-section avatar>
-              <img src="https://img.icons8.com/ios/96/000000/motorbike-helmet.png" width="24" height="24">
+              <img src="~assets/logos/driver-standings.png" width="24" height="24">
             </q-item-section>
             <q-item-section>
               <q-item-label>Driver Standings</q-item-label>
@@ -46,7 +46,7 @@
           </q-item>
           <q-item clickable v-ripple tag="a" to="/constructors" @click.prevent="startProgress">
             <q-item-section avatar>
-              <img src="https://img.icons8.com/ios/96/000000/f1-race-car-side-view.png" width="24" height="24">
+              <img src="~assets/logos/constructor-standings.png" width="24" height="24">
             </q-item-section>
             <q-item-section>
               <q-item-label>Constructor Standings</q-item-label>
@@ -54,7 +54,7 @@
           </q-item>
           <q-item clickable v-ripple tag="a" to="/schedule" @click.prevent="startProgress">
             <q-item-section avatar>
-              <img src="https://img.icons8.com/ios/96/000000/calendar.png" width="24" height="24">
+              <img src="~assets/logos/race-schedule.png" width="24" height="24">
             </q-item-section>
             <q-item-section>
               <q-item-label>Race Schedule</q-item-label>
@@ -69,7 +69,7 @@
         enter-active-class="animated fadeIn"
         leave-active-class="animated fadeOut"
         appear
-        :duration="2000"
+        :duration="500"
       >
         <router-view/>
       </transition>
