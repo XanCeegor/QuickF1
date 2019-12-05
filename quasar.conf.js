@@ -110,12 +110,12 @@ module.exports = function (ctx) {
       // workboxPluginMode: 'InjectManifest',
       // workboxOptions: {}, // only for NON InjectManifest
       manifest: {
-        name: 'QuickF1',
-        short_name: 'QuickF1',
+        name: 'pZero',
+        short_name: 'pZero',
         description: 'A quick F1 stat checking app',
         display: 'standalone',
         orientation: 'portrait',
-        background_color: '#ffffff',
+        background_color: '#000',
         theme_color: '#027be3',
         icons: [
           {
@@ -146,13 +146,19 @@ module.exports = function (ctx) {
         ]
       }
     },
-
+    capacitor: {
+      iosStatusBarPadding: true, // add the dynamic top padding on iOS mobile devices
+      id: 'org.xanceegor.pzero.app',
+      display: 'standalone',
+      orientation: 'portrait',
+    },
     // https://quasar.dev/quasar-cli/developing-cordova-apps/configuring-cordova
     cordova: {
-      id: 'org.xanceegor.quickf1.app',
+      id: 'org.xanceegor.pzero.app',
       noIosLegacyBuildFlag: true, // uncomment only if you know what you are doing
       display: 'standalone',
       orientation: 'portrait',
+      backButtonExit: false
     },
 
     // https://quasar.dev/quasar-cli/developing-electron-apps/configuring-electron
@@ -180,7 +186,7 @@ module.exports = function (ctx) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        // appId: 'quickf1'
+        // appId: 'pZero'
       }
     }
   }

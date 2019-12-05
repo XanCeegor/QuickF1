@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import routes from './routes'
-import vueSmoothScroll from 'vue2-smooth-scroll'
+// import vueSmoothScroll from 'vue2-smooth-scroll'
 
-Vue.use(vueSmoothScroll)
+// Vue.use(vueSmoothScroll)
 Vue.use(VueRouter)
 Vue.use(require('vue-moment'));
 
@@ -23,6 +23,6 @@ export default function (/* { store, ssrContext } */) {
     mode: process.env.VUE_ROUTER_MODE,
     base: process.env.VUE_ROUTER_BASE
   })
-
+  
   return Router
 }

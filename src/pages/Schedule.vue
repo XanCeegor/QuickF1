@@ -1,7 +1,5 @@
 <template>
- <q-layout>
     <q-page v-show="!isLoading" class="schedule">
-
         <div v-if="upcomingRaces.length > 0">
             <div id="upcomingRacesHeader">
                 <div class="row">
@@ -12,7 +10,7 @@
             </div>
 
             <br><hr>
-            <q-btn v-if="pastRaces.length > 0" icon="keyboard_arrow_down" color="black" @click.prevent="scrollToBottom">Past Races</q-btn>
+            <q-btn v-if="pastRaces.length > 0" icon="keyboard_arrow_down" color="black" @click.native="scrollToBottom">Past Races</q-btn>
             <!-- <a href="#pastRacesHeader" v-smooth-scroll @click='setUrlBack'><q-btn icon="keyboard_arrow_down" color="black">Past Races</q-btn></a>         -->
             <br><br>
 
@@ -79,9 +77,9 @@
                                 </q-card>
                             </div>
                         </div> -->
-                        <div class="text-center see-more-btn" >
+                        <!-- <div class="text-center " >
                             <h5 class="h5-nomargin">See more</h5>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <br><br><br>
@@ -114,7 +112,7 @@
                             </div>
                         </q-img>
                     </div>
-                    <div class="track-container">
+                    <div class="track-container" style="border: none;">
                         <div class="trackname text-bold">
                             {{ race.circuitName}}
                         </div>
@@ -160,34 +158,22 @@
                             </q-card>
                         </div>
                     </div>
-                    <div class="text-center seemore" >
+                    <!-- <div class="text-center seemore" >
                         <h5 class="h5-nomargin">See more</h5>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <br><br><br>
         </div>
     </div>
 
-
-    <!-- <back-to-top text="Back to top"  @click.prevent="test1"></back-to-top> -->
-
-    <!-- <q-page-scroller position="bottom-right" :scroll-offset="150" :offset="[18, 18]">
-        <q-btn position="bottom-right" fab icon="keyboard_arrow_up" color="red" @click.prevent="test1"></q-btn>
-    </q-page-scroller> -->
-
     <q-page-scroller position="bottom-right" :scroll-offset="150" :offset="[18, 18]">
-        <q-btn fab icon="keyboard_arrow_up" color="red" @click.prevent="handleTopScroll"/>
+        <q-btn fab icon="keyboard_arrow_up" color="red" @click.native="scrollToTop"/>
     </q-page-scroller>
-    <!-- <back-to-top >
-        <q-btn fab icon="keyboard_arrow_up" color="red" @click.prevent="handleTopScroll" />
-    </back-to-top> -->
   </q-page>
-  </q-layout>
 </template>
 
 <script>
-import BackToTop from 'vue-backtotop'
 import axios from 'axios';
 import moment from 'moment';
 import JQuery from 'jquery'
@@ -195,11 +181,8 @@ let $ = JQuery
 
 export default {
     name: 'schedule',
-    components: { BackToTop },
     data () {
         return {
-            executed: false,
-            canScroll: true,
             isLoading: true,
             pastRaces: [],
             upcomingRaces: [],
@@ -234,32 +217,27 @@ export default {
         // this.canScroll = true;
         window.addEventListener('scroll', this.handleScroll);
     },
-    beforeDestroy() {
-        $('body').css({
-            "padding-top": 0
-        });
-    },
     methods: {
-      handleTopScroll(){
-        var that = this;
-        that.canScroll = false;
-        that.handleScroll();
+    //   handleTopScroll(){
+    //     var that = this;
+    //     that.canScroll = false;
+    //     that.handleScroll();
         
-        var sticky2 = $('#pastRacesHeader');
-        sticky2.css({
-            position: "static",
-            top: 0,
-            opacity: 1
-        });
-        $('body').css({
-            "padding-top": 0
-        });
-        setTimeout(function(){
-            that.canScroll = true;
-        }, 2000);
-      },
+    //     // var sticky2 = $('#pastRacesHeader');
+    //     // sticky2.css({
+    //     //     position: "static",
+    //     //     top: 0,
+    //     //     opacity: 1
+    //     // });
+    //     // $('body').css({
+    //     //     "padding-top": 0
+    //     // });
+    //     setTimeout(function(){
+    //         that.canScroll = true;
+    //     }, 2000);
+    //   },
     handleScroll(){
-        if(this.canScroll == true){
+        // if(this.canScroll == true){
             var sticky1 = $('#upcomingRacesHeader');
             var sticky2 = $('#pastRacesHeader');
 
@@ -271,43 +249,42 @@ export default {
                 position: "static",
                 top: 0
             });
-            $('body').css({
-                "padding-top": 0
-            });
+            // $('body').css({
+            //     "padding-top": 0
+            // });
             var topOffset1 = sticky1.offset().top;
             var topOffset2 = sticky2.offset().top;
             var stickyHeight1 = sticky1.outerHeight();
             var stickyHeight2 = sticky2.outerHeight();
             var scrollHeight = $(window).scrollTop();
-
             //make upcoming races header sticky
-            if(topOffset1 - 50 <= scrollHeight && scrollHeight < topOffset2 - stickyHeight1){
+            if(topOffset1 - 50 < scrollHeight && scrollHeight < topOffset2 - stickyHeight1){
                 sticky1.css({
-                    position: "fixed",
+                    position: "sticky",
                     top: 50,
-                    opacity: 0.8
+                    // opacity: 0.8
                 });
                 sticky2.css({
                     position: "static",
                     top: 0,
-                    opacity: 1
+                    // opacity: 1
                 });
-                $('body').css({
-                    "padding-top": stickyHeight1,
-                    "background-color": "black"
-                });
+                // $('body').css({
+                //     "padding-top": stickyHeight1,
+                //     "background-color": "black"
+                // });
             }
             //make upcoming races and past races headers sticky
-            else if(scrollHeight >= topOffset2- - stickyHeight1 && scrollHeight < topOffset2){
+            else if(scrollHeight >= topOffset2 - stickyHeight1 && scrollHeight < topOffset2){
                 sticky1.css({
-                    position: "fixed",
+                    position: "sticky",
                     top: 0,
-                    opacity: 0.8
+                    // opacity: 0.8
                 });
                 sticky2.css({
-                    position: "fixed",
+                    position: "sticky",
                     top: 50,
-                    opacity: 0.8
+                    // opacity: 0.8
                 });
                 
             }
@@ -318,13 +295,13 @@ export default {
                     opacity: 1
                 });
                 sticky2.css({
-                    position: "fixed",
+                    position: "sticky",
                     top: 50,
-                    opacity: 0.8
+                    // opacity: 0.8
                 });
-                $('body').css({
-                    "padding-top": "50px"
-                });
+                // $('body').css({
+                //     "padding-top": "50px"
+                // });
             }
             //make all headers static
             else{
@@ -336,7 +313,7 @@ export default {
                 sticky2.css({
                     position: "static",
                     top: 50,
-                    opacity: 0.8
+                    // opacity: 0.8
                 });
             }
             if(scrollHeight < 10){
@@ -345,12 +322,12 @@ export default {
                     top: 50,
                     opacity: 1
                 });
-                $('body').css({
-                    "padding-top": 0,
-                    "background-color": "black"
-                });
+                // $('body').css({
+                //     "padding-top": 0,
+                //     "background-color": "black"
+                // });
             }           
-        }
+        // }
     },
     scrollToTop(){
         var el = this.$el.getElementsByClassName("upcomingRacesHeader")[0];
@@ -382,7 +359,7 @@ export default {
         });
         
     },
-    //async function to get the upcoming races. Async/await used to prevent a race condition
+    //async function to get the upcoming races. Async/await used to prevent a race condition. no pun intended
     async getUpcoming(count){
         for(let i = 0; i < count.length; i++){
             await axios.get(`http://ergast.com/api/f1/current/${count[i]}.json?limit=1000`)
@@ -426,7 +403,7 @@ export default {
     },
     getDriverImage(name, familyName){
         let concatName = name.substring(0,3) + familyName.substring(0,3) + "01";
-        let url = `https://www.formula1.com/content/dam/fom-website/drivers/${name[0]}/${concatName.toUpperCase()}_${name}_${familyName}/${concatName.toLowerCase()}.png.transform/1col-retina/image.png`;
+        let url = `https://www.formula1.com/content/dam/fom-website/drivers/${name[0]}/${concatName.toUpperCase()}_${name}_${familyName}/${concatName.toLowerCase()}.png.transform/2col-retina/image.png`;
         return url;
     },
     getRaceFlag(country){
@@ -444,7 +421,6 @@ html {
 }
 
 #upcomingRacesHeader {
-    opacity:1;
     width: 100%;
     z-index:500;
 }
@@ -617,7 +593,5 @@ html {
     padding: 0;
     margin: 0;
 }
-[v-cloak] {
-  display: none;
-}
+
 </style>

@@ -80,7 +80,7 @@
       </div>
     </div>
 
-    <div class="header-container">
+    <div class="constructor-header-container" id="constructor-header-container">
       <div class="header-position dark">
         Pos
       </div>
@@ -94,8 +94,6 @@
         Points
       </div>
     </div>
-    
-    <hr>
 
     <div v-for="(team, index) in teams.slice(3)" :key="index" class="flex-container">
       <div class="position">
@@ -120,6 +118,8 @@
 
 <script>
 import axios from 'axios';
+import JQuery from 'jquery';
+let $ = JQuery;
 
 export default {
   name: 'constructors',
@@ -130,9 +130,26 @@ export default {
     }
   },
   created() {
-    this.getData();
+    this.getData();window.addEventListener('scroll', this.handleScroll);
+    setTimeout(function(){
+        window.scrollTo(0, 0); 
+    }, 1500); 
+  },
+  beforeMount(){
+    
   },
   methods: {
+    handleScroll(){
+      var sticky1 = $('#constructor-header-container');
+      var topOffset1 = sticky1.offset().top;
+      var scrollHeight = $(window).scrollTop()
+      if(topOffset1 - 50 <= scrollHeight){
+          sticky1.css({
+              position: "sticky",
+              top: 50,
+          });
+      }
+    },
     getTeamImage(index) {
       return `https://www.formula1.com/content/fom-website/en/teams/${this.teams[index].name}/_jcr_content/logo.img.jpg/1515152671364.jpg`
     },
@@ -161,17 +178,10 @@ export default {
 }
 </script>
 
-<style scoped>
+<style >
 .constructor{
     height: 100vh;
     background-color: black;
-}
-hr{
-    border:0;
-    margin:0;
-    width:100%;
-    height:2px;
-    background:red;
 }
 .teamcontainer{
   display: flex;
@@ -228,14 +238,15 @@ hr{
   font-weight: 500;
   height: 50px;
 }
-
-.header-container{
+.constructor-header-container{
   display: flex;
   flex-direction: row;
   background-color: black;
   color: white;
   padding-top: 10px;
   padding-bottom: 10px;
+  border-bottom: 2px solid red;
+  z-index: 1;
 }
 .header{
   display: flex;
@@ -264,7 +275,5 @@ hr{
   left: 50%;
   transform: translate(-50%, -50%);
 }
-[v-cloak] {
-  display: none;
-}
+
 </style>

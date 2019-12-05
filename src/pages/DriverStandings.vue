@@ -83,7 +83,7 @@
     </div>
 
 
-    <div class="header-container">
+    <div class="driver-header-container" id="driver-header-container">
       <div class="header-position dark">
         Pos
       </div>
@@ -100,7 +100,6 @@
         Points
       </div>
     </div>
-    <hr class="line">
   
     <div v-for="driver in drivers.slice(3)" :key="driver" class="flex-container">
       <div class="position">
@@ -127,6 +126,8 @@
 
 <script>
 import axios from 'axios';
+import JQuery from 'jquery';
+let $ = JQuery;
 
 export default {
   name: 'drivers',
@@ -138,8 +139,25 @@ export default {
   },
   created() {
     this.getData();
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  beforeMount(){
+    setTimeout(function(){
+        window.scrollTo(0, 0); 
+    }, 1500);
   },
   methods: {
+    handleScroll(){
+      var sticky1 = $('#driver-header-container');
+      var topOffset1 = sticky1.offset().top;
+      var scrollHeight = $(window).scrollTop()
+      if(topOffset1 - 50 <= scrollHeight){
+          sticky1.css({
+              position: "sticky",
+              top: 50,
+          });
+      }
+    },
     getDriverImage(index) {
       return `https://www.formula1.com/content/fom-website/en/drivers/${this.drivers[index].firstname}-${this.drivers[index].familyname}/_jcr_content/image16x9.img.1536.high.jpg`
     },
@@ -173,14 +191,6 @@ export default {
 </script>
 
 <style >
-.line{
-    border:0;
-    margin:0;
-    width:100%;
-    height:2px;
-    background:red;
-}
-
 .drivercontainer{
   display: flex;
   flex-direction: row;
@@ -239,13 +249,15 @@ export default {
   height: 50px;
 }
 
-.header-container{
+.driver-header-container{
   display: flex;
   flex-direction: row;
   background-color: black;
   color: white;
   padding-top: 10px;
   padding-bottom: 10px;
+  border-bottom: 2px solid red;
+  z-index: 1;
 }
 .header{
   display: flex;

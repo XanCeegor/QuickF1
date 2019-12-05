@@ -16,19 +16,17 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer dark
-      color="black"
+    <q-drawer 
       v-model="leftDrawerOpen"
       show-if-above
       content-class="bg-grey-2"
     >
-      <q-img class="absolute-top" src="https://purepng.com/public/uploads/large/purepng.com-formula-1-logoformula-1logonew2018-21529676510t61kq.png" style="height: 150px">
+      <img src="~assets/logos/app-splashscreen.png" width="100%" height="25%">
         <div class="absolute-bottom bg-transparent">
         </div>
-      </q-img>
-      <q-scroll-area style="height: calc(100% - 150px); margin-top: 150px; border-right: 1px solid #ddd">
+      <q-scroll-area style="height: calc(100% - 150px); border-right: 1px solid #ddd">
         <q-list padding>
-          <q-item clickable v-ripple tag="a" to="/recentrace" @click.prevent="startProgress">
+          <q-item clickable v-ripple tag="a" to="/recentrace" @click.native="startProgress">
             <q-item-section avatar>
               <img src="~assets/logos/recent-race.png" width="24" height="24">
             </q-item-section>
@@ -36,7 +34,7 @@
               <q-item-label>Latest Race Results</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item clickable v-ripple tag="a" to="/drivers" @click.prevent="startProgress">
+          <q-item clickable v-ripple tag="a" to="/drivers" @click.native="startProgress">
             <q-item-section avatar>
               <img src="~assets/logos/driver-standings.png" width="24" height="24">
             </q-item-section>
@@ -44,7 +42,7 @@
               <q-item-label>Driver Standings</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item clickable v-ripple tag="a" to="/constructors" @click.prevent="startProgress">
+          <q-item clickable v-ripple tag="a" to="/constructors" @click.native="startProgress">
             <q-item-section avatar>
               <img src="~assets/logos/constructor-standings.png" width="24" height="24">
             </q-item-section>
@@ -52,7 +50,7 @@
               <q-item-label>Constructor Standings</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item clickable v-ripple tag="a" to="/schedule" @click.prevent="startProgress">
+          <q-item clickable v-ripple tag="a" to="/schedule" @click.native="startProgress">
             <q-item-section avatar>
               <img src="~assets/logos/race-schedule.png" width="24" height="24">
             </q-item-section>
@@ -69,7 +67,7 @@
         enter-active-class="animated fadeIn"
         leave-active-class="animated fadeOut"
         appear
-        :duration="500"
+        :duration="1000"
       >
         <router-view/>
       </transition>
@@ -89,7 +87,7 @@ export default {
   methods: {
     startProgress(){
       $q.loadingBar.start();
-    }
+    },
   }
 }
 </script>

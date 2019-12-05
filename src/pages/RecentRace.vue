@@ -13,12 +13,13 @@
       </div>
     </div>
   </div>
-  <div class="header-container">
+
+  <div class="recent-header-container" id="recent-header-container">
     <div class="header-position text-white">
       Pos
     </div>
     <div class="header">
-      <div class="gt-sm">Nationality</div>
+      <div class="gt-xs">Nationality</div>
     </div>
     <div class="header">
       Driver
@@ -33,7 +34,6 @@
       Time
     </div>
   </div>
-  <hr class="recentraceline">
   <div v-for="(driver, index) in drivers" :key="index" class="flex-container">
     <div class="position" :style="positionStyle(driver.position)">
         <q-item-label>{{driver.position}}</q-item-label>
@@ -66,6 +66,8 @@
 
 <script>
 import axios from 'axios';
+import JQuery from 'jquery';
+let $ = JQuery;
 
 export default {
   name: 'recentrace',
@@ -120,8 +122,28 @@ export default {
   },
   created() {
     this.getData();
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  beforeMount(){
+    setTimeout(function(){
+        window.scrollTo(0, 0); 
+    }, 1500);
   },
   methods: {
+    test(){
+    
+    },
+    handleScroll(){
+      var sticky1 = $('#recent-header-container');
+      var topOffset1 = sticky1.offset().top;
+      var scrollHeight = $(window).scrollTop()
+      if(topOffset1 - 50 <= scrollHeight){
+          sticky1.css({
+              position: "sticky",
+              top: 50,
+          });
+      }
+    },
     positionStyle(position){
       if(position == "R"){
         return "background-color: red"
@@ -168,7 +190,7 @@ export default {
 
       })
       .catch(e => {
-        console.log(e);
+        // console.log(e);
       })
     }
   },
@@ -178,13 +200,6 @@ export default {
 <style>
 .RecentRace{
   background-color: black;
-}
-.recentraceline{
-    border:0;
-    margin:0;
-    width:100%;
-    height:2px;
-    background:red;
 }
 .flex-container{
   display: flex;
@@ -199,27 +214,31 @@ export default {
   color:white;
   font-weight: 500;
 }
-.header-container{
+.recent-header-container{
   display: flex;
   flex-direction: row;
-  padding-bottom: 10px;
+  background-color: black;
+  color: white;
   padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid red;
+  z-index: 1;
 }
-.header{
+.recent-header{
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   color: white;
 }
-.header-position{
+.recent-header-position{
   display: flex;
   justify-content: center;
   align-items: center;
   width: 200px;
 }
 
-.position{
+.recent-position{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -227,7 +246,5 @@ export default {
   color:white;
   background-color: #ffa200;
 }
-[v-cloak] {
-  display: none;
-}
+
 </style>

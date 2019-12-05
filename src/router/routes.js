@@ -1,39 +1,49 @@
-import MainLayout from 'layouts/MainLayout.vue';
+// import MainLayout from 'layouts/MainLayout.vue';
 import RecentRace from 'pages/RecentRace'
 import DriverStandings from 'pages/DriverStandings'
 import ConstructorsStandings from 'pages/ConstructorStandings'
 import Schedule from 'pages/Schedule'
+import Index from 'pages/Index'
 
 const routes = [
+  
   {
-    path: '/drivers',
-    name: 'drivers',
-    component: DriverStandings,
-    meta: { title: 'Driver Standings' }
+    path: '/',
+    name: 'mainlayout',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'index',
+        component: Index,
+        meta: { title: 'QuickF1' }
+      },
+      {
+        path: 'drivers',
+        name: 'drivers',
+        component: DriverStandings,
+        meta: { title: 'Driver Standings' }
+      },
+      {
+        path: 'constructors',
+        name: 'constructors',
+        component: ConstructorsStandings,
+        meta: { title: 'Constructor Standings' }
+      },
+      {
+        path: 'recentrace',
+        name: 'recentrace',
+        component: RecentRace,
+        meta: { title: 'Latest Race Result' }
+      },
+      {
+        path: 'schedule',
+        name: 'schedule',
+        component: Schedule,
+        meta: { title: 'Race Schedule' }
+      },
+    ]
   },
-  {
-    path: '/constructors',
-    name: 'constructors',
-    component: ConstructorsStandings,
-    meta: { title: 'Constructor Standings' }
-  },
-  {
-    path: '/recentrace',
-    name: 'recentrace',
-    component: RecentRace,
-    meta: { title: 'Latest Race Result' }
-  },
-  {
-    path: '/schedule',
-    name: 'schedule',
-    component: Schedule,
-    meta: { title: 'Race Schedule' }
-  },
-  // {
-  //   path: '/drivers',
-  //   name: 'mainlayout',
-  //   component: MainLayout
-  // },
 ]
 
 // Always leave this as last one
