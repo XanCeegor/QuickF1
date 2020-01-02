@@ -86,7 +86,7 @@
             </div>
         </div>
 
-    <div v-if="upcomingRaces.length > 0">
+    <div v-if="pastRaces.length > 0">
         <div id="pastRacesHeader" class="pastRacesHeader">
             <div class="row">
                 <div class="col past-races-container">
@@ -253,6 +253,7 @@ export default {
             //     "padding-top": 0
             // });
             var topOffset1 = sticky1.offset().top;
+            console.log(topOffset1);
             var topOffset2 = sticky2.offset().top;
             var stickyHeight1 = sticky1.outerHeight();
             var stickyHeight2 = sticky2.outerHeight();
