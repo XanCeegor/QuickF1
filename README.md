@@ -4,10 +4,8 @@ This app uses the ![Ergast Developer API](https://ergast.com/mrd/) for retrieivi
 Images are pulled from the offical ![F1.com])(https://f1.com) website. I do not own these images in any way.
 This app is built specifically for mobile and is not optimized for browser view even though it can be run in a browser.
 
-![Imgur](https://imgur.com/undefined.png)
-
+![Imgur](https://imgur.com/YezIrHQ.png)
 ![Imgur](https://imgur.com/QAeJooA.png)
-
 ![Imgur](https://imgur.com/Cf8dS0S.png)
 
 ## Project Setup
