@@ -4,11 +4,11 @@ This app uses the ![Ergast Developer API](https://ergast.com/mrd/) for retrieivi
 Images are pulled from the offical ![F1.com])(https://f1.com) website. I do not own these images in any way.
 This app is built specifically for mobile and is not optimized for browser view even though it can be run in a browser.
 
-![Imgur](https://imgur.com/aaSY6Rh.png)
+![Imgur](https://imgur.com/undefined.png)
 
-![Imgur](https://imgur.com/InmZY6q.png)
+![Imgur](https://imgur.com/QAeJooA.png)
 
-![Imgur](https://imgur.com/6ewFTWK.png)
+![Imgur](https://imgur.com/Cf8dS0S.png)
 
 ## Project Setup
 This project uses the Quasar Framework. For details on how to set up Quasar see here (https://quasar.dev/quasar-cli/installation)
