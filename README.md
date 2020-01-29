@@ -4,7 +4,7 @@ This app uses the ![Ergast Developer API](https://ergast.com/mrd/) for retrieivi
 Images are pulled from the offical f1.com website. I do not own these images in any way.
 This app is built specifically for mobile and is not optimized for browser view even though it can be run in a browser.
 
-The APK can be downloaded ![here](https://www.dropbox.com/s/srhz7haehgk9p9q/QuickF1?dl=0).
+The APK can be downloaded from ![Dropbox](https://www.dropbox.com/s/srhz7haehgk9p9q/QuickF1).
 It will be published to the Google Play Store soon.
 
 ## Screenshots
